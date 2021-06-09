@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
@@ -16,31 +17,32 @@ import java.sql.Statement;
 public class RegisterForm extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JPasswordField passwordField;
+	private static JTextField textField;
+	private static JTextField textField_1;
+	private static JTextField textField_4;
+	private static JTextField textField_5;
+	private static JPasswordField passwordField;
 
 	@SuppressWarnings("deprecation")
-	public void ekle() // Kayýt eklemek için kullandýðým metot
+	public static void ekle() // Kayýt eklemek için kullandýðým metod
 	{
 
-		String t2, t3, t4, t5, t6;
+		String adres, dogum, email, ad, sifre;
 
-		t2 = textField.getText();
-		t3 = textField_1.getText();
-		t4 = textField_4.getText();
-		t5 = textField_5.getText();
-		t6 = passwordField.getText();
+		adres = textField.getText();
+		dogum = textField_1.getText();
+		email = textField_4.getText();
+		ad = textField_5.getText();
+		sifre = passwordField.getText();
 
 		String eklesorgusu = "INSERT INTO member_db (member_name,member_email,member_password,member_birth,member_address) values ('"
-				+ t2 + "','" + t3 + "','" + t4 + "','" + t5 + "','" + t6 + "')";
+				+ ad + "','" + email + "','" + sifre + "','" + dogum + "','" + adres + "')";
 		try {
 			Statement sta = MyConnection.baglan.createStatement();
 			sta.execute(eklesorgusu);
 			System.out.println("Veritabanýna Kayýt Baþarý Ýle Eklendi...");
-		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Kayýt Baþarýlý"); //Kayýt baþarýlý olduðunda verilecek mesaj kutusu
+		} catch (SQLException e) { //Veritabanýna kayýt eklenmediði zaman hata mesajý
 			System.out.println(e.toString());
 			System.out.println("Veritabanýna Kayýt Eklenemedi...");
 		}
@@ -51,7 +53,7 @@ public class RegisterForm extends JFrame {
 			public void run() {
 				try {
 					RegisterForm frame = new RegisterForm();
-					frame.setVisible(true);
+					frame.setVisible(true);//kayýt formunu ekrana getirir.
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -59,9 +61,6 @@ public class RegisterForm extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
 	public RegisterForm() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 569, 459);
@@ -122,11 +121,14 @@ public class RegisterForm extends JFrame {
 		JButton btnNewButton = new JButton("KAYDOL");
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) {//Kaydol butonunun fonksiyonu
 				MyConnection.baglantiAc();
 				ekle();
 				MyConnection.baglantiKapat();
+				LoginForm logform = new LoginForm();
+				logform.show();
 			}
+
 		});
 		btnNewButton.setBounds(297, 344, 89, 34);
 		contentPane.add(btnNewButton);
@@ -134,7 +136,11 @@ public class RegisterForm extends JFrame {
 		JButton btnIptalEt = new JButton("\u0130PTAL ET");
 		btnIptalEt.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnIptalEt.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) {// iptal et butonu fonksiyonu
+
+				LoginForm logform = new LoginForm();
+				logform.show();
+
 			}
 		});
 		btnIptalEt.setBounds(185, 344, 89, 34);
