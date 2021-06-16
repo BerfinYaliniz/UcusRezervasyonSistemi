@@ -26,16 +26,14 @@ public class LoginForm extends JFrame {
 	{
 
 		String  email, sifre;
-
 		email = textField.getText();
 		sifre = passwordField.getText();
 
-		String girissorgusu = "SELECT * from member_db where member_email='" + email + "' && member_password='" + sifre + "'"; //veritabanýndan giriþ ekraný bilgilerini çekmek için
+		String girissorgusu = "SELECT * from yolcu_db where member_email='" + email + "' && member_password='" + sifre + "'"; //veritabanýndan giriþ ekraný bilgilerini çekmek için
 		
 			Statement sta = MyConnection.baglan.createStatement();
 			ResultSet rs=sta.executeQuery(girissorgusu);
-			if(rs.next()) { // giriþ bilgileri doðru girilirse anasayfaya yönlendirir.
-		
+			if(rs.next()) { // giriþ bilgileri boþ deðilse anasayfaya yönlendirir.
 				HomePage hpage=new HomePage();
 				hpage.show();
 			}

@@ -11,6 +11,8 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -35,7 +37,7 @@ public class RegisterForm extends JFrame {
 		ad = textField_5.getText();
 		sifre = passwordField.getText();
 
-		String eklesorgusu = "INSERT INTO member_db (member_name,member_email,member_password,member_birth,member_address) values ('"
+		String eklesorgusu = "INSERT INTO yolcu_db (member_name,member_email,member_password,member_birth,member_address) values ('"
 				+ ad + "','" + email + "','" + sifre + "','" + dogum + "','" + adres + "')";
 		try {
 			Statement sta = MyConnection.baglan.createStatement();
@@ -121,13 +123,42 @@ public class RegisterForm extends JFrame {
 		JButton btnNewButton = new JButton("KAYDOL");
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnNewButton.addActionListener(new ActionListener() {
+			
+
 			public void actionPerformed(ActionEvent e) {//Kaydol butonunun fonksiyonu
+				
 				MyConnection.baglantiAc();
+				String adres, dogum, email, ad, sifre;
+				adres = textField.getText();
+				dogum = textField_1.getText();
+				email = textField_4.getText();
+				ad = textField_5.getText();
+				sifre = passwordField.getText();
+				  if(ad.equals(""))
+			        {
+			            JOptionPane.showMessageDialog(null, "Lütfen adýnýzý yazýn!");
+			        }
+			        
+			        else if(sifre.equals(""))
+			        {
+			            JOptionPane.showMessageDialog(null, "Þifre alanýný boþ býrakmayýn!");
+			        }
+			         else if(email.equals(""))
+			        {
+			            JOptionPane.showMessageDialog(null, "EMail alanýný boþ býrakmayýn!");
+			        } 
+			         else if(dogum.equals(""))
+			        {
+			            JOptionPane.showMessageDialog(null, "Doðum tarihi alanýný boþ býrakmayýn!");
+			        }
+			      
+			        else {
 				ekle();
 				MyConnection.baglantiKapat();
 				LoginForm logform = new LoginForm();
 				logform.show();
-			}
+				
+			}}
 
 		});
 		btnNewButton.setBounds(297, 344, 89, 34);
@@ -137,7 +168,6 @@ public class RegisterForm extends JFrame {
 		btnIptalEt.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnIptalEt.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {// iptal et butonu fonksiyonu
-
 				LoginForm logform = new LoginForm();
 				logform.show();
 
