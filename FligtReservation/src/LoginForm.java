@@ -33,7 +33,9 @@ public class LoginForm extends JFrame {
 		
 			Statement sta = MyConnection.baglan.createStatement();
 			ResultSet rs=sta.executeQuery(girissorgusu);
+			
 			if(rs.next()) { // giriþ bilgileri boþ deðilse anasayfaya yönlendirir.
+				
 				HomePage hpage=new HomePage();
 				hpage.show();
 			}
@@ -50,6 +52,7 @@ public class LoginForm extends JFrame {
 				try {
 					LoginForm frame = new LoginForm();
 					frame.setVisible(true);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
