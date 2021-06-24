@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: 127.0.0.1
--- Üretim Zamanı: 17 Haz 2021, 10:19:03
+-- Üretim Zamanı: 24 Haz 2021, 14:16:30
 -- Sunucu sürümü: 8.0.23
 -- PHP Sürümü: 8.0.3
 
@@ -24,44 +24,66 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `anadolujet_db`
+-- Tablo için tablo yapısı `anadolu_jt`
 --
 
-CREATE TABLE `anadolujet_db` (
+CREATE TABLE `anadolu_jt` (
   `sefer_id` int NOT NULL,
   `sefer_no` int NOT NULL,
-  `sefer_baslangıc` date NOT NULL,
-  `sefer_bitis` date NOT NULL,
+  `sefer_baslangic` text NOT NULL,
+  `sefer_bitis` text NOT NULL,
   `koltuk_no` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Tablo döküm verisi `anadolu_jt`
+--
+
+INSERT INTO `anadolu_jt` (`sefer_id`, `sefer_no`, `sefer_baslangic`, `sefer_bitis`, `koltuk_no`) VALUES
+(0, 1, 'Bartyn', 'İstanbul', 6),
+(1, 2, 'Bartyn', 'Ankara', 5);
 
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `atlas_db`
+-- Tablo için tablo yapısı `atlas`
 --
 
-CREATE TABLE `atlas_db` (
+CREATE TABLE `atlas` (
   `sefer_id` int NOT NULL,
   `sefer_no` int NOT NULL,
-  `sefer_baslangıc` date NOT NULL,
-  `sefer_bitis` date NOT NULL,
+  `sefer_baslangic` varchar(50) NOT NULL,
+  `sefer_bitis` varchar(50) NOT NULL,
   `koltuk_no` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Tablo döküm verisi `atlas`
+--
+
+INSERT INTO `atlas` (`sefer_id`, `sefer_no`, `sefer_baslangic`, `sefer_bitis`, `koltuk_no`) VALUES
+(1, 1, 'Bartyn', 'Konya', 3),
+(2, 2, 'Bartyn', 'Ankara', 3),
+(3, 3, 'Antalya', 'İzmir', 6),
+(4, 4, 'Ankara', 'Samsun', 6),
+(5, 5, 'İstanbul', 'Edirne', 3),
+(6, 6, 'Diyarbakir', 'Adana', 3),
+(7, 2, 'afasf', 'afaf', 3),
+(8, 4, 'fffwwfw', 'fwfwfwf', 3);
 
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `pegasus_db`
+-- Tablo için tablo yapısı `pegasus`
 --
 
-CREATE TABLE `pegasus_db` (
+CREATE TABLE `pegasus` (
   `sefer_id` int NOT NULL,
   `sefer_no` int NOT NULL,
-  `sefer_baslangıc` date NOT NULL,
-  `sefer_bitis` date NOT NULL,
+  `sefer_baslangic` text NOT NULL,
+  `sefer_bitis` text NOT NULL,
   `koltuk_no` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -109,27 +131,8 @@ INSERT INTO `yolcu_db` (`member_name`, `member_email`, `member_password`, `membe
 ('hg', 'fhg@hotmail.com', '65', '2012-12-20', 'jgu'),
 ('df', 'sdf', 'asd', '2012-12-20', 'r'),
 ('x', '12', 'd', '2012-12-12', ''),
-('berfin', 'berfinq', '123', '2012-12-12', 'kj');
-
---
--- Dökümü yapılmış tablolar için indeksler
---
-
---
--- Tablo için indeksler `atlas_db`
---
-ALTER TABLE `atlas_db`
-  ADD PRIMARY KEY (`sefer_id`);
-
---
--- Dökümü yapılmış tablolar için AUTO_INCREMENT değeri
---
-
---
--- Tablo için AUTO_INCREMENT değeri `atlas_db`
---
-ALTER TABLE `atlas_db`
-  MODIFY `sefer_id` int NOT NULL AUTO_INCREMENT;
+('berfin', 'berfinq', '123', '2012-12-12', 'kj'),
+('j', 'j', '123', '2012-12-12', 'nv');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
