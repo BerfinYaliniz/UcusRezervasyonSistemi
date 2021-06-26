@@ -1,4 +1,4 @@
-package Ucak_rezervasyon;
+
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -15,7 +15,7 @@ import java.awt.event.ActionEvent;
 
 public class Yonetici extends JFrame {
 
-	private JPanel contentPane;
+	public JPanel contentPane;
 
 	/**
 	 * Launch the application.

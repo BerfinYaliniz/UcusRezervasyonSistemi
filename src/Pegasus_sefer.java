@@ -1,5 +1,4 @@
-package Ucak_rezervasyon;
-import java.sql.Connection;
+
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -26,14 +25,14 @@ public class Pegasus_sefer extends JFrame {
 
     	 
 	}
-	private JPanel contentPane;
+	public JPanel contentPane;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		MyConnection mc=new MyConnection();
-		mc.baglantiAc();
+		MyConnection.baglantiAc();
 		System.out.println("baslangic:"+mc.sefer_baslangic_getir(0));
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -45,8 +44,6 @@ public class Pegasus_sefer extends JFrame {
 				}
 			}
 		});
-		
-		
 		
 	}
 

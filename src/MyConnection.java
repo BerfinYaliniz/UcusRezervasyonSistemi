@@ -1,14 +1,17 @@
+
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
-public class MyConnection extends javax.swing.JFrame {
+public class MyConnection{
 	public static Connection baglan;
-
-	public static void baglantiAc() // Bu kýsým benim baðlantý açmak için kullandýðým metot kýsmý
-	{
+    public Statement st=null;
+    
+	public static void baglantiAc(){
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 			String bag = "jdbc:mysql://localhost:3306/member_db";
 			String kullaniciadi = "root";
 			String sifre = "1234";
@@ -19,9 +22,7 @@ public class MyConnection extends javax.swing.JFrame {
 		}
 	}
 
-	public static void baglantiKapat()
-//Bu kýsým benim baðlantýyý kesmek için kullandýðým metot kýsmý
-	{
+	public static void baglantiKapat(){
 		try {
 			baglan.close();
 			System.out.println("Veritabanýna Baðlantý Baþarýlý Bir Þekilde Kapatýldý, Sonlandýrýldý.");
@@ -29,6 +30,7 @@ public class MyConnection extends javax.swing.JFrame {
 			System.out.println("Veritabaný Baðlantýsý Koparýlýrken Bir Hata Meydana Geldi" + e);
 		}
 	}
+	
 public void sefer_ekle(int no,String sefer_b,String sefer_s,int kt) {
 		
 		try {
@@ -78,7 +80,7 @@ public void sefer_ekle(int no,String sefer_b,String sefer_s,int kt) {
 	}
 	
 	public String sefer_bitis_getir(int i) {
-		String sorgu="Select * From atlas where Sefer_id="+String.valueOf(i);
+		String sorgu="Select * From atlas where sefer_id="+String.valueOf(i);
 		String son=null;
 		try {
 			st=baglan.createStatement();
@@ -93,11 +95,10 @@ public void sefer_ekle(int no,String sefer_b,String sefer_s,int kt) {
 		}	
 	}
 	
-	public int sefer_id(int i) {
+	public int sefer_no(int i) {
 		
 		String sorgu="Select * From atlas";
 		int tut;
-	
 		try {
 			st=baglan.createStatement();
 			ResultSet rs=st.executeQuery(sorgu);
@@ -115,7 +116,7 @@ public void sefer_ekle(int no,String sefer_b,String sefer_s,int kt) {
 		return 0;
 	}
 	
-	public int sefer_no(int i) {
+	public int sefer_id(int i) {
 		
 		String sorgu="Select * From atlas";
 		int tut;
@@ -125,7 +126,7 @@ public void sefer_ekle(int no,String sefer_b,String sefer_s,int kt) {
 			ResultSet rs=st.executeQuery(sorgu);
 			
 			     while(rs.next()) {
-			       tut=rs.getInt("sefer_no");
+			       tut=rs.getInt("sefer_id");
 			       if(tut==i) {
 			    	   return tut;
 			       }

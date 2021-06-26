@@ -1,4 +1,4 @@
-package Ucak_rezervasyon;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -24,12 +24,12 @@ import java.awt.event.ActionEvent;
 
 public class Pegasus_sefer_ekle extends JFrame {
 	MyConnection m=new MyConnection();
-	private JPanel contentPane;
-	private JTextField Nereden;
-	private JTextField Nereye;
+	public JPanel contentPane;
+	public JTextField Nereden;
+	public JTextField Nereye;
 	public Statement stt=null;
-	private JTextField sefer_num;
-	private JTextField koltuk_num;
+	public JTextField sefer_num;
+	public JTextField koltuk_num;
 	/**
 	 * Launch the application.
 	 */
@@ -91,7 +91,7 @@ public class Pegasus_sefer_ekle extends JFrame {
 		label_1.setBounds(5, 111, 58, 22);
 		contentPane.add(label_1);
 		
-		JButton sefer_ekle_button = new JButton("Sefer_ekle");
+		JButton sefer_ekle_button = new JButton("Sefer ekle");
 		sefer_ekle_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				 m.baglantiAc();
