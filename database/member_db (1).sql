@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: 127.0.0.1
--- Üretim Zamanı: 26 Haz 2021, 12:45:39
+-- Üretim Zamanı: 30 Haz 2021, 17:35:19
 -- Sunucu sürümü: 8.0.23
 -- PHP Sürümü: 8.0.3
 
@@ -20,6 +20,25 @@ SET time_zone = "+00:00";
 --
 -- Veritabanı: `member_db`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Tablo için tablo yapısı `adminlogin`
+--
+
+CREATE TABLE `adminlogin` (
+  `admin_id` int NOT NULL,
+  `admin_email` varchar(100) NOT NULL,
+  `admin_password` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Tablo döküm verisi `adminlogin`
+--
+
+INSERT INTO `adminlogin` (`admin_id`, `admin_email`, `admin_password`) VALUES
+(1, 'admin@gmail.com', 'admin');
 
 -- --------------------------------------------------------
 
@@ -64,12 +83,7 @@ CREATE TABLE `atlas` (
 INSERT INTO `atlas` (`sefer_id`, `sefer_no`, `sefer_baslangic`, `sefer_bitis`, `koltuk_no`) VALUES
 (1, 1, 'Bartyn', 'Konya', 3),
 (2, 2, 'Bartyn', 'Ankara', 3),
-(3, 3, 'Antalya', 'İzmir', 6),
-(4, 4, 'Ankara', 'Samsun', 6),
-(5, 5, 'İstanbul', 'Edirne', 3),
-(6, 6, 'Diyarbakir', 'Adana', 3),
-(7, 2, 'afasf', 'afaf', 3),
-(8, 4, 'fffwwfw', 'fwfwfwf', 3);
+(3, 3, 'Antalya', 'İzmir', 6);
 
 -- --------------------------------------------------------
 
@@ -132,7 +146,24 @@ INSERT INTO `yolcu_db` (`member_name`, `member_email`, `member_password`, `membe
 ('df', 'sdf', 'asd', '2012-12-20', 'r'),
 ('x', '12', 'd', '2012-12-12', ''),
 ('berfin', 'berfinq', '123', '2012-12-12', 'kj'),
-('j', 'j', '123', '2012-12-12', 'nv');
+('j', 'j', '123', '2012-12-12', 'nv'),
+('a', 'a', '12', '2012-12-12', 'ljipjıj');
+
+--
+-- Dökümü yapılmış tablolar için indeksler
+--
+
+--
+-- Tablo için indeksler `adminlogin`
+--
+ALTER TABLE `adminlogin`
+  ADD PRIMARY KEY (`admin_id`);
+
+--
+-- Tablo için indeksler `atlas`
+--
+ALTER TABLE `atlas`
+  ADD PRIMARY KEY (`sefer_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

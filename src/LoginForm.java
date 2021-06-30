@@ -31,8 +31,8 @@ public class LoginForm extends JFrame {
 
 		String girissorgusu = "SELECT * from yolcu_db where member_email='" + email + "' && member_password='" + sifre + "'"; //veritabanýndan giriþ ekraný bilgilerini çekmek için
 		
-			Statement sta = MyConnection.baglan.createStatement();
-			ResultSet rs=sta.executeQuery(girissorgusu);
+			Statement st = MyConnection.baglan.createStatement();
+			ResultSet rs=st.executeQuery(girissorgusu);
 			
 			if(rs.next()) { // giriþ bilgileri boþ deðilse anasayfaya yönlendirir.
 				
@@ -41,6 +41,30 @@ public class LoginForm extends JFrame {
 			}
 			else {
 				JOptionPane.showMessageDialog(this, "email ya da sifre yanlýþ"); //giriþ bilgileri yanlýþ girildiðinde dönecek mesaj kutusu
+				textField.setText("");
+				passwordField.setText("");
+			}
+			
+}
+	public void admingiris() throws SQLException // Kayýt eklemek için kullandýðým metod
+	{
+
+		String  email, sifre;
+		email = textField.getText();
+		sifre = passwordField.getText();
+
+		String girissorgusu = "SELECT * from adminlogin where admin_email='" + email + "' && admin_password='" + sifre + "'"; //veritabanýndan admin giriþ ekraný bilgilerini çekmek için
+		
+			Statement sta = MyConnection.baglan.createStatement();
+			ResultSet rs=sta.executeQuery(girissorgusu);
+			
+			if(rs.next()) { // admin giriþ bilgileri boþ deðilse anasayfaya yönlendirir.
+				
+				Yonetici yonet=new Yonetici();
+				yonet.show();
+			}
+			else {
+				JOptionPane.showMessageDialog(this, "email ya da sifre yanlýþ"); // admin giriþ bilgileri yanlýþ girildiðinde dönecek mesaj kutusu
 				textField.setText("");
 				passwordField.setText("");
 			}
@@ -105,7 +129,7 @@ public class LoginForm extends JFrame {
 				MyConnection.baglantiKapat();
 			}
 		});
-		btnNewButton.setBounds(253, 298, 131, 54);
+		btnNewButton.setBounds(197, 298, 131, 54);
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Kaydol");
@@ -116,8 +140,23 @@ public class LoginForm extends JFrame {
 		
 			}
 		});
-		btnNewButton_1.setBounds(101, 298, 116, 54);
+		btnNewButton_1.setBounds(57, 298, 116, 54);
 		contentPane.add(btnNewButton_1);
+		
+		JButton btnAdminGiri = new JButton("Admin Giri\u015F");
+		btnAdminGiri.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MyConnection.baglantiAc();
+				try {
+					admingiris();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+				MyConnection.baglantiKapat();
+			}
+		
+		});
+		btnAdminGiri.setBounds(346, 298, 131, 54);
+		contentPane.add(btnAdminGiri);
 	}
-
 }
